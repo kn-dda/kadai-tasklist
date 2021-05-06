@@ -10,6 +10,11 @@
             {!! Form::model($tasks, ['route' => ['tasks.update', $tasks->id], 'method' => 'put']) !!}
 
                 <div class="form-group">
+                    {!! Form::label('status', 'タイトル:') !!}
+                    {!! Form::text('status', null, ['class' => 'form-control']) !!}
+                </div>
+                
+                <div class="form-group">
                     {!! Form::label('content', 'メッセージ:') !!}
                     {!! Form::text('content', null, ['class' => 'form-control']) !!}
                 </div>
