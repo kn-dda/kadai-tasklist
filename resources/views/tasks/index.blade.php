@@ -10,6 +10,7 @@
             <thead>
                 <tr>
                     <th>id</th>
+                    <th>status</th>
                     <th>メッセージ</th>
                 </tr>
             </thead>
@@ -18,6 +19,7 @@
                 <tr>
                     {{-- メッセージ詳細ページへのリンク --}}
                     <td>{!! link_to_route('tasks.show', $tasks->id, ['task' => $tasks->id]) !!}</td>
+                    <td>{{ $tasks->status}}</td>
                     <td>{{ $tasks->content }}</td>
                 </tr>
                 @endforeach
