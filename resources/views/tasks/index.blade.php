@@ -10,7 +10,7 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>status</th>
+                    <th>ステータス</th>
                     <th>メッセージ</th>
                 </tr>
             </thead>
