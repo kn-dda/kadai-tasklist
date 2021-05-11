@@ -21,7 +21,7 @@ class AddUserIdToTasksTable extends Migration
             $table->string('content');
             
             //外部キー制約
-            $table->string('tasklist_user_id_foreign');
+            $table->string('tasks_user_id_foreign');
             //$table->foreign(外部キーを設定するカラム名)->references(参照先のカラム名)->on(参照先のテーブル名);
             
         });
