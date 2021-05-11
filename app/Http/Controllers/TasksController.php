@@ -15,13 +15,22 @@ class TasksController extends Controller
      */
     public function index()
     {
-         // タスク一覧を取得
-        $tasks = Task::all();
+        $data = [];
+        if (\Auth::check()) { // 認証済みの場合
+            // 認証済みユーザを取得
+            $user = \Auth::user();
+            // ユーザの投稿の一覧を作成日時の降順で取得
+            // （後のChapterで他ユーザの投稿も取得するように変更しますが、現時点ではこのユーザの投稿のみ取得します）
+            $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
 
-        // タスク一覧ビューでそれを表示
-        return view('tasks.index', [
-            'tasks' => $tasks,
-        ]);
+            $data = [
+                'user' => $user,
+                'tasks' => $tasks,
+            ];
+        }
+
+        // Welcomeビューでそれらを表示
+        return view('welcome', $data);
     }
 
     /**
@@ -58,6 +67,15 @@ class TasksController extends Controller
         $tasks->status = $request->status; //追加
         $tasks->content = $request->content;
         $tasks->save();
+        
+        // 認証済みユーザ（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
+        $request->user()->microposts()->create([
+            'content' => $request->content,
+        ]);
+
+        // 前のURLへリダイレクトさせる
+        return back();
+        
 
         // トップページへリダイレクトさせる
         return redirect('/');
@@ -133,9 +151,20 @@ class TasksController extends Controller
     public function destroy($id)
     {
         // idの値でメッセージを検索して取得
-        $tasks = Task::findOrFail($id);
+        //$tasks = Task::findOrFail($id);
         // メッセージを削除
-        $tasks->delete();
+        //$tasks->delete();
+        
+        // idの値で投稿を検索して取得
+        $micropost = \App\Micropost::findOrFail($id);
+
+        // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、投稿を削除
+        if (\Auth::id() === $micropost->user_id) {
+            $micropost->delete();
+        }
+        
+        // 前のURLへリダイレクトさせる
+        return back();
 
         // トップページへリダイレクトさせる
         return redirect('/');

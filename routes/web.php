@@ -14,8 +14,13 @@
 Route::get('/', 'TasksController@index');
 //    return view ('welcome');
 
+Route::group(['middleware' => ['auth']], function () {
+    // 中略
+    Route::resource('tasks', 'TasksController', ['only' => ['store', 'destroy']]);
+});
 
-Route::resource('tasks', 'TasksController');
+
+//Route::resource('tasks', 'TasksController');
 
 // 認証
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
