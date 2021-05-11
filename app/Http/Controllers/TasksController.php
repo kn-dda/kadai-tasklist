@@ -69,14 +69,13 @@ class TasksController extends Controller
         $tasks->save();
         
         // 認証済みユーザ（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
-        $request->user()->microposts()->create([
+        $request->user()->tasks()->create([
             'content' => $request->content,
         ]);
 
         // 前のURLへリダイレクトさせる
         return back();
         
-
         // トップページへリダイレクトさせる
         return redirect('/');
     }
@@ -156,11 +155,11 @@ class TasksController extends Controller
         //$tasks->delete();
         
         // idの値で投稿を検索して取得
-        $micropost = \App\Micropost::findOrFail($id);
+        $task = \App\Task::findOrFail($id);
 
         // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、投稿を削除
-        if (\Auth::id() === $micropost->user_id) {
-            $micropost->delete();
+        if (\Auth::id() === $task->user_id) {
+            $task->delete();
         }
         
         // 前のURLへリダイレクトさせる

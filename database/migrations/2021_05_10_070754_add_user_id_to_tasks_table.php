@@ -13,10 +13,12 @@ class AddUserIdToTasksTable extends Migration
      */
     public function up()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            //$table->bigIncrements('id');
-            //$table->unsignedBigInteger('user_id');
-            //$table->string('content');
+        //Schema::table('tasks', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
+            
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('content');
             
             //外部キー制約
             $table->string('tasklist_user_id_foreign');
