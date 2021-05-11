@@ -10,19 +10,15 @@
                     <div class="card-header">
                         <h3 class="card-title">{{ Auth::user()->name }}</h3>
                     </div>
-                    <div class="card-body">
-                        {{-- 認証済みユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-                        <img class="rounded img-fluid" src="{{ Gravatar::get(Auth::user()->email, ['size' => 500]) }}" alt="">
-                    </div>
                 </div>
             </aside>
             */
             
             <div class="col-sm-8">
                 {{-- 投稿フォーム --}}
-                @include('tasks.form')
+                @include('tasks.create')
                 {{-- 投稿一覧 --}}
-                @include('tasks.tasks')
+                @include('tasklists.tasks')
             </div>
         </div>
     @else
