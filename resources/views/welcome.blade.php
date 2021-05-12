@@ -4,7 +4,7 @@
     @if (Auth::check())
         <div class="row">
             
-            /*
+            {{--
             <aside class="col-sm-4">
                 <div class="card">
                     <div class="card-header">
@@ -12,7 +12,7 @@
                     </div>
                 </div>
             </aside>
-            */
+            --}}
             
             <div class="col-sm-8">
                 {{-- 投稿フォーム --}}

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {{タスク一覧}}
+    {{--タスク一覧--}}
     @include('tasklists.tasks')
     
 <h1>タスク一覧</h1>

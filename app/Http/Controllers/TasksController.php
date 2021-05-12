@@ -30,8 +30,8 @@ class TasksController extends Controller
             ];
         }
 
-        // Welcomeビューでそれらを表示
-        return view('welcome', $data);
+        // タスク一覧ビューでそれらを表示
+        return view('tasks.index', $data);
     }
 
     /**
