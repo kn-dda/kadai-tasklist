@@ -14,8 +14,10 @@
 Route::get('/', 'TasksController@index');
 //    return view ('welcome');
 
+//認証付きのルーティング
 Route::group(['middleware' => ['auth']], function () {
     // 中略
+    Route::resource('tasks','TasksController', ['only' => ['index','show']]);
     Route::resource('tasks', 'TasksController', ['only' => ['store', 'destroy']]);
 });
 

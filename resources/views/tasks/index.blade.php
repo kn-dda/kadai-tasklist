@@ -10,17 +10,17 @@
             <thead>
                 <tr>
                     <th>id</th>
+                    <th>タスク</th>
                     <th>ステータス</th>
-                    <th>メッセージ</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($tasks as $tasks)
                 <tr>
                     {{-- メッセージ詳細ページへのリンク --}}
-                    <td>{!! link_to_route('tasks.show', $tasks->id, ['task' => $tasks->id]) !!}</td>
-                    <td>{{ $tasks->status}}</td>
+                     <td>{!! link_to_route('tasks.show', $tasks->id, ['task' => $tasks->id]) !!}</td>
                     <td>{{ $tasks->content }}</td>
+                    <td>{{ $tasks->status}}</td>
                 </tr>
                 @endforeach
             </tbody>

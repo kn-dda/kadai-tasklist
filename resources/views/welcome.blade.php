@@ -16,8 +16,11 @@
             
             <div class="col-sm-8">
                 {{-- 投稿フォーム --}}
+                
+
                 @include('tasks.create')
                 {{-- 投稿一覧 --}}
+                
                 @include('tasklists.tasks')
             </div>
         </div>
@@ -26,6 +29,7 @@
             <div class="text-center">
                 <h1>Welcome to the Tasklist</h1>
                 {{-- ユーザ登録ページへのリンク --}}
+
                 {!! link_to_route('signup.get', 'Sign up now!', [], ['class' => 'btn btn-lg btn-primary']) !!}
             </div>
         </div>
