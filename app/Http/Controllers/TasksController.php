@@ -31,7 +31,7 @@ class TasksController extends Controller
         }
 
         // タスク一覧ビューでそれらを表示
-        return view('tasks.index', $data);
+        //return view('tasks.index', $data);
     }
 
     /**
