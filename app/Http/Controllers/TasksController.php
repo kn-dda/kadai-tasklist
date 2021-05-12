@@ -24,14 +24,15 @@ class TasksController extends Controller
             // （後のChapterで他ユーザの投稿も取得するように変更しますが、現時点ではこのユーザの投稿のみ取得します）
             $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
 
-            $data = [
-                'user' => $user,
-                'tasks' => $tasks,
-            ];
+            //$data = [
+            //    'user' => $user,
+            //    'tasks' => $tasks,
+            //];
         }
 
         // タスク一覧ビューでそれらを表示
-        //return view('tasks.index', $data);
+        return view('tasks.index', $data);
+        
     }
 
     /**
