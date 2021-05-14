@@ -93,6 +93,7 @@ class TasksController extends Controller
             return view('tasks.show', [
             'tasks' => $tasks,
         ]);
+        }
     }
 
     /**
@@ -104,11 +105,11 @@ class TasksController extends Controller
     
     public function edit($id)
     {
-        // idの値でメッセージを検索して取得
+        // idの値でタスクを検索して取得
         $tasks = Task::findOrFail($id);
 
         // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、表示する
-        if (\Auth::id() === $task->user_id) {
+        if (\Auth::id() === $tasks->user_id) {
             return view('tasks.edit', [
             'tasks' => $tasks,
         ]);
