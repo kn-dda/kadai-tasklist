@@ -21,13 +21,12 @@ class TasksController extends Controller
             // 認証済みユーザを取得
             $user = \Auth::user();
             // ユーザの投稿の一覧を作成日時の降順で取得
-            // （後のChapterで他ユーザの投稿も取得するように変更しますが、現時点ではこのユーザの投稿のみ取得します）
             $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
 
-            //$data = [
-            //    'user' => $user,
-            //    'tasks' => $tasks,
-            //];
+            $data = [
+                'user' => $user,
+                'tasks' => $tasks,
+            ];
         }
 
         // タスク一覧ビューでそれらを表示
@@ -67,8 +66,8 @@ class TasksController extends Controller
         
         // 認証済みユーザ（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
         $request->user()->tasks()->create([
-            'content' => $request->content,
             'status' => $request->status,
+            'content' => $request->content,
         ]);
 
         // 前のURLへリダイレクトさせる

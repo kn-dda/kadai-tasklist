@@ -14,7 +14,7 @@
 Route::get('/', 'TasksController@index');
 //    return view ('welcome');
 
-Route::resource('tasks', 'TasksController');
+//Route::resource('tasks', 'TasksController');
 
 
 
@@ -28,13 +28,12 @@ Route::get('logout','Auth\LoginController@logout')->name('logout.get');
 Route::get('signup','Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup','Auth\RegisterController@register')->name('signup.post');
 
-/*
-認証付きのルーティング
+
+//認証付きのルーティング//
 Route::group(['middleware' => ['auth']], function () {
-    // 中略
-    Route::resource('tasks','TasksController',['only' => ['index','show']]);
-    Route::resource('tasks','TasksController',['only' => ['edit','update']]);
-    Route::resource('tasks','TasksController',['only' => ['store','create']]);
-    Route::resource('tasks','TasksController',['only' => ['store', 'destroy']]);
+    Route::resource('tasks', 'TasksController');
+    //Route::resource('tasks','TasksController',['only' => ['index','show']]);
+    //Route::resource('tasks','TasksController',['only' => ['edit','update']]);
+    //Route::resource('tasks','TasksController',['only' => ['store','create']]);
+    //Route::resource('tasks','TasksController',['only' => ['store', 'destroy']]);
 });
-*/
