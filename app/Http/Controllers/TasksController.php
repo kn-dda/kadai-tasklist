@@ -89,7 +89,7 @@ class TasksController extends Controller
         $tasks = Task::findOrFail($id);
             
         // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、閲覧を可能にする
-        if (\Auth::id() === $task->user_id) {
+        if (\Auth::id() === $tasks->user_id) {　//$tasksをtaskから変更済み
             return view('tasks.show', [
             'tasks' => $tasks,
         ]);
@@ -136,7 +136,7 @@ class TasksController extends Controller
         $tasks = Task::findOrFail($id);
         
         // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、投稿を更新可能にする
-        if (\Auth::id() === $task->user_id) {
+        if (\Auth::id() === $tasks->user_id) { //$tasksをtaskから変更済み
             $tasks->status = $request->status; //追加
             $tasks->content = $request->content;
             $tasks->save();
@@ -159,11 +159,11 @@ class TasksController extends Controller
         $tasks = Task::findOrFail($id);
         
         // idの値で投稿を検索して取得
-        $task = \App\Task::findOrFail($id);
+        $tasks = \App\Task::findOrFail($id); //$tasksをtaskから変更済み
 
         // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、投稿を削除
-        if (\Auth::id() === $task->user_id) {
-            $task->delete();
+        if (\Auth::id() === $tasks->user_id) { //$tasksをtaskから変更済み
+            $tasks->delete(); //$tasksをtaskから変更済み
         }
         
         // 前のURLへリダイレクトさせる
