@@ -2,9 +2,6 @@
 
 @section('content')
 
-    {{--タスク一覧--}}
-    @include('tasks.index')
-
 <h1>タスク一覧</h1>
 
 {{--
@@ -21,9 +18,11 @@
             <tbody>
                 @foreach ($tasks as $task)
                 <tr>
+                
+    --}}
                     {{-- タスク詳細ページへのリンク --}}
-                    
-{{--
+  
+ {{--                  
                     <td>{!! link_to_route('tasks.show', $tasks->id, ['task' => $tasks->id]) !!}</td>
                     <td>{{ $tasks->content }}</td>
                     <td>{{ $tasks->status}}</td>
@@ -32,6 +31,8 @@
             </tbody>
         </table>
     @endif
+    
+    --}}
     
     
     {{-- タスク作成ページへのリンク --}}
