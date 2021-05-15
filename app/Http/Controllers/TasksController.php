@@ -83,8 +83,10 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function show($id)
     {
+    
         // idの値でメッセージを検索して取得
         $tasks = Task::findOrFail($id);
             
@@ -95,6 +97,7 @@ class TasksController extends Controller
         ]);
         }
     }
+    
 
     /**
      * Show the form for editing the specified resource.

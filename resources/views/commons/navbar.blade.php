@@ -12,7 +12,10 @@
             <ul class="navbar-nav">
                 @if (Auth::check())
                     {{-- タスク作成ページへのリンク --}}
-                    {!! link_to_route('tasks.create', '新規メッセージの投稿', [], ['class' => 'btn btn-primary']) !!} 
+                    {{--↓こちら要確認！！--}}
+                    {{-- {!! link_to_route('tasks.create', '新規メッセージの投稿', [], ['class' => 'btn btn-primary']) !!} --}} 
+                    {{-- ログアウトへのリンク --}}
+                    {!! link_to_route('logout.get', 'Logout') !!}
                 
                 @else
                 {{--右上バーに表示させる--}}
