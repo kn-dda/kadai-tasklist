@@ -97,6 +97,11 @@ class TasksController extends Controller
             return view('tasks.show', [
             'tasks' => $tasks,
         ]);
+        
+            
+        } else {
+            // トップページへリダイレクトさせる
+            return redirect('/');
         }
     }
     
