@@ -13,6 +13,7 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     
     public function index()
     {
         
@@ -59,8 +60,8 @@ class TasksController extends Controller
     {
         //バリデーション
         $request->validate([
-            'status' => 'required|max:10', //追加
-            'content' => 'required|max:10',
+            'status' => 'required|max:20', //追加
+            'content' => 'required|max:255',
         ]);
         
         
@@ -91,7 +92,8 @@ class TasksController extends Controller
         $tasks = Task::findOrFail($id);
             
         // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、閲覧を可能にする
-        if (\Auth::id() === $tasks->user_id) {　//$tasksをtaskから変更済み
+        if (\Auth::id() === $tasks->user_id) { //$tasksをtaskから変更済み
+        
             return view('tasks.show', [
             'tasks' => $tasks,
         ]);
@@ -131,8 +133,8 @@ class TasksController extends Controller
         
         //バリデーション
         $request->validate([
-            'status' => 'required|max:10', //追加
-            'content' => 'required|max:10',
+            'status' => 'required|max:20', //追加
+            'content' => 'required|max:255',
         ]);
         
         // idの値でメッセージを検索して取得
@@ -158,11 +160,11 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        // idの値でメッセージを検索して取得
+        // idの値でタスクを検索して取得
         $tasks = Task::findOrFail($id);
         
         // idの値で投稿を検索して取得
-        $tasks = \App\Task::findOrFail($id); //$tasksをtaskから変更済み
+        //$tasks = \App\Task::findOrFail($id); //$tasksをtaskから変更済み
 
         // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、投稿を削除
         if (\Auth::id() === $tasks->user_id) { //$tasksをtaskから変更済み
