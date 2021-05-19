@@ -14,24 +14,14 @@
 Route::get('/', 'TasksController@index');
 //    return view ('welcome');
 
-//Route::resource('tasks', 'TasksController');
-
-
-
-
 // 認証
 Route::get('login','Auth\LoginController@showLoginForm')->name('login');
 Route::post('login','Auth\LoginController@login')->name('login.post');
 Route::get('logout','Auth\LoginController@logout')->name('logout.get');
 
-
 //認証付きのルーティング//
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('tasks', 'TasksController');
-    //Route::resource('tasks','TasksController',['only' => ['index','show']]);
-    //Route::resource('tasks','TasksController',['only' => ['edit','update']]);
-    //Route::resource('tasks','TasksController',['only' => ['store','create']]);
-    //Route::resource('tasks','TasksController',['only' => ['store', 'destroy']]);
 });
 
 // ユーザ登録

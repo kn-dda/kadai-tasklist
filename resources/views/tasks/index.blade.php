@@ -1,9 +1,7 @@
 {{--タスク一覧を表示--}}
-
 @extends('layouts.app')
 
 @section('content')
-
 {{-- ここにページ毎のコンテンツを書く--}}
 
 {{-- ログインしているか否かを判別　--}}
@@ -20,7 +18,6 @@
                     <th>ステータス</th>
                 </tr>
             </thead>
-            
             <tbody>
                 @foreach ($tasks as $task)
                 <tr>
